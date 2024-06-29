@@ -1,9 +1,6 @@
 function validateField() {
-    const emailValid =isEmailValid()
-    document.getElementById('recover-password-button').disabled = !emailValid; 
-    
-    const passwordValid = isPasswordValid()
-    document.getElementById('login-button').disabled = !disabled || !passwordValid
+    toggleButtonDisable()
+    toggleEmailErrors()
 }
 
 function isEmailValid(){
@@ -12,6 +9,21 @@ function isEmailValid(){
         return false
     }
     return validateEmail(email)
+}
+
+function toggleEmailErrors(){
+    const email = document.getElementById('email').value
+    if(!email){
+        //email obrigatorio
+        document.getElementById('email-required-error').style.display ='block';
+    }
+}
+function toggleButtonDisable(){
+    const emailValid =isEmailValid()
+    document.getElementById('recover-password-button').disabled = !emailValid; 
+    
+    const passwordValid = isPasswordValid()
+    document.getElementById('login-button').disabled = !disabled || !passwordValid
 }
 
 function isPasswordValid(){
