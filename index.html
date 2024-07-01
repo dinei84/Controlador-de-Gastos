@@ -4,32 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="global.css">
     <title>Controlador de Gastos</title>
 </head>
 <body>
     <form action="">
-        <div>
+        <div class="form-field">
             <div><label for="email">Email</label></div>
             <input type="email" id="email" name="email" onchange="onChangeEmail()" placeholder="seu@email.com">
             <div id="email-required-error" class="error">Email é obrigatório</div>
-            <div id="email-invalid-error" class="error">Email é invalido</div>
+            <div id="email-invalid-error" class="error">Email é inválido</div>
         </div>
-        <div>
+        <div class="form-field">
             <div><label for="password">Senha</label></div>
-            <input id="password" onchange="onChangePassword()"  type="password" name="password" placeholder="Senha">
+            <input id="password" onchange="onChangePassword()" type="password" name="password" placeholder="Senha">
             <div id="password-required-error" class="error">Senha é obrigatória</div>
         </div>
         <div>
-            <button id="recover-password-button" type="button"  disabled="true" class="clear">Recuperar Senha</button>
+            <button id="recover-password-button" type="button" disabled class="clear">Recuperar Senha</button>
         </div>
         <div>
-            <button id="login-button" onclick="login()" type="button" disabled="true" class="solid">Entrar</button>
+            <button id="login-button" onclick="login()" type="button" disabled class="solid">Entrar</button>
         </div>
         <div>
-            <button type="button" disabled="true" class="outline">Registrar</button>
+            <button type="button" disabled class="outline">Registrar</button>
         </div>
     </form>
 
     <script src="index.js"></script>
+    <script src="validations.js"></script>
 </body>
 </html>

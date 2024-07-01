@@ -20,7 +20,6 @@ form{
 
 input, button{
     padding: 10px;
-    margin-bottom: 10px;
     width: -webkit-fill-available;
 }
 input{
@@ -28,7 +27,8 @@ input{
 }
 
 button{    
-    cursor: pointer;   
+    cursor: pointer;
+    margin-bottom: 10px;   
 }
 button:active{
     opacity: 0.8;
@@ -36,25 +36,9 @@ button:active{
 button[disabled]{
     opacity: 0.7;
 }
-.clear{
-    background: transparent;
-    border: none;
-    color: white;
+
+.form-field{
+    margin-bottom: 10;
 }
 
-.solid{
-    background: white;
-    border: none;
-    color: green;
-}
 
-.outline{
-    background: transparent;
-    color: white;
-}
-
-.error{
-    color: white;
-    background: red;
-    display: none;
-}
