@@ -1,39 +1,63 @@
-function validateField() {
-    toggleButtonDisable()
-    toggleEmailErrors()
+function onChangeEmail() {
+    toggleButtonDisable();
+    toggleEmailErrors();
 }
 
-function isEmailValid(){
+function onChangePassword(){
+    toggleButtonDisable();
+    togglePasswordErrors();
+}
+
+function isEmailValid() {
     const email = document.getElementById('email').value;
-    if(!email){
-        return false
+    if (!email) {
+        return false;
     }
-    return validateEmail(email)
+    return validateEmail(email);
 }
 
-function toggleEmailErrors(){
-    const email = document.getElementById('email').value
-    if(!email){
-        //email obrigatorio
-        document.getElementById('email-required-error').style.display ='block';
+function toggleEmailErrors() {
+    const email = document.getElementById('email').value;
+    const emailRequiredError = document.getElementById('email-required-error');
+    if (!email) {
+        // email obrigatorio
+        emailRequiredError.style.display = 'block';
+    } else {
+        emailRequiredError.style.display = 'none'
+    }
+
+    if(validateEmail(email)){
+        document.getElementById('email-invalid-error').style.display = 'none'
+    }else{
+        document.getElementById('email-invalid-error').style.display = 'block'
     }
 }
-function toggleButtonDisable(){
-    const emailValid =isEmailValid()
-    document.getElementById('recover-password-button').disabled = !emailValid; 
-    
-    const passwordValid = isPasswordValid()
-    document.getElementById('login-button').disabled = !disabled || !passwordValid
-}
 
-function isPasswordValid(){
+function togglePasswordErrors(){
     const password = document.getElementById('password').value
-    if(!password){
-        return false
-    }
-    return true
-} 
 
+    if(!password){
+        document.getElementById('password-required-error').style.display = 'block'
+    }else{
+        document.getElementById('password-required-error').style.display = 'none'
+    }
+}
+
+function toggleButtonDisable() {
+    const emailValid = isEmailValid();
+    const passwordValid = isPasswordValid();
+
+    document.getElementById('recover-password-button').disabled = !emailValid;
+    document.getElementById('login-button').disabled = !emailValid || !passwordValid;
+}
+
+function isPasswordValid() {
+    const password = document.getElementById('password').value;
+    if (!password) {
+        return false;
+    }
+    return true;
+}
 
 function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
