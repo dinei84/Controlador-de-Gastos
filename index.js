@@ -8,6 +8,30 @@ function onChangePassword() {
     togglePasswordErrors();
 }
 
+function login() {
+    showLoading();
+    firebase.auth().signInWithEmailAndPassword(
+        form.email().value, form.password().value
+    ).then(response => {
+        hideLoading()
+        window.location.href = '/pages/home/home.html';
+    }).catch(error => {
+        hideLoading()
+        alert(getErrorMessage(error));
+    });
+}
+
+function getErrorMessage(error) {
+    if (error.code === 'auth/invalid-credential') {
+        return 'Usuário não encontrado';
+    }
+    return error.message;
+}
+
+function register() {
+    window.location.href = '/pages/register/register.html';
+}
+
 function isEmailValid() {
     const email = form.email().value;
     if (!email) {
@@ -53,13 +77,8 @@ const form = {
     passwordRequiredError: () => document.getElementById('password-required-error')
 };
 
-// // Função de validação de email (exemplo simples)
-// function validateEmail(email) {
-//     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//     return re.test(email);
-// }
-
-// function login() {
-//     // Lógica para login
-//     console.log("Login executado");
-// }
+// Função de validação de email (exemplo simples)
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
