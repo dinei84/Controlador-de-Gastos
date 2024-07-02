@@ -22,14 +22,35 @@ function login() {
 }
 
 function getErrorMessage(error) {
-    if (error.code === 'auth/invalid-credential') {
-        return 'Usuário não encontrado';
+    if (error && error.code) {
+        if (error.code === 'auth/user-not-found') {
+            return 'Usuário não encontrado';
+        }
+        if (error.code === 'auth/wrong-password') {
+            return 'Senha inválida';
+        }
+        if (error.code === 'auth/invalid-credential') {
+            return 'Senha inválida!';
+        }
     }
-    return error.message;
+    return error.message || 'Ocorreu um erro desconhecido';
 }
+
+
 
 function register() {
     window.location.href = '/pages/register/register.html';
+}
+
+function recoverPassword(){
+    showLoading()
+    firebase.auth().sendPasswordResetEmail(form.email().value).then(()=>{
+        hideLoading()
+        alert('Email enviado com sucesso!')
+    }).catch(error => {
+        hideLoading()
+        alert(getErrorMessage(error))
+    })
 }
 
 function isEmailValid() {
