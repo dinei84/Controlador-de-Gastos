@@ -10,7 +10,7 @@ findTransactions();
 
 function findTransactions() {
     firebase.firestore()
-        .collection('transaction')
+        .collection('transactions')
         .get()
         .then(snapshot => {
             const transactions = snapshot.docs.map(doc => doc.data());
