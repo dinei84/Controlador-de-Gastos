@@ -19,6 +19,26 @@ function onChangeConfirmPassword() {
     toggleRegisterButton();
 }
 
+function register(){
+    showLoading()
+
+    const email = form.email().value
+    const password = form.password().value
+    firebase.auth().createUserWithEmailAndPassword(
+        email, password
+    ).then(() => {
+        hideLoading()
+        window.location.href = '/pages/home/home.html';
+    }).catch(error => {
+        hideLoading()
+        alert(getErrorMessage(error))
+    })
+}
+
+function getErrorMessage(error){
+    return error.message
+}
+
 function toggleRegisterButton() {
     const emailValid = form.email().value && validateEmail(form.email().value);
     const passwordValid = form.password().value && form.password().value.length >= 6;
