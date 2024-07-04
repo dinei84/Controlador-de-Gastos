@@ -12,109 +12,13 @@
         <button type="button" class="clear" onclick="logout()">Sair</button>
     </header>
 
-    <ol>
-        <li class="expense">
-            <b>11/02/2024</b>
-            <p>R$ 10,25</p>
-            <p>Supermercado</p>
-            <p></p>
-        </li>
-        <li class="income">
-            <b>20/07/2024</b>
-            <p>R$ 10,25</p>
-            <p>Salario</p>
-            <p>Empresa</p>
-        </li>
-        <li class="expense">
-            <b>30/08/2024</b>
-            <p>R$ 10,25</p>
-            <p>Transporte</p>
-            <p>Gasolina</p>
-        </li>
-        <li class="expense">
-            <b>07/11/2024</b>
-            <p>R$ 10,25</p>
-            <p>Terreno</p>
-            <p>Mensalidade</p>
-        </li>
-        <li class="expense">
-            <b>11/02/2024</b>
-            <p>R$ 10,25</p>
-            <p>Supermercado</p>
-            <p></p>
-        </li>
-        <li class="income">
-            <b>20/07/2024</b>
-            <p>R$ 10,25</p>
-            <p>Salario</p>
-            <p>Empresa</p>
-        </li>
-        <li class="expense">
-            <b>30/08/2024</b>
-            <p>R$ 10,25</p>
-            <p>Transporte</p>
-            <p>Gasolina</p>
-        </li>
-        <li class="expense">
-            <b>07/11/2024</b>
-            <p>R$ 10,25</p>
-            <p>Terreno</p>
-            <p>Mensalidade</p>
-        </li>
-        <li class="expense">
-            <b>11/02/2024</b>
-            <p>R$ 10,25</p>
-            <p>Supermercado</p>
-            <p></p>
-        </li>
-        <li class="income">
-            <b>20/07/2024</b>
-            <p>R$ 10,25</p>
-            <p>Salario</p>
-            <p>Empresa</p>
-        </li>
-        <li class="expense">
-            <b>30/08/2024</b>
-            <p>R$ 10,25</p>
-            <p>Transporte</p>
-            <p>Gasolina</p>
-        </li>
-        <li class="expense">
-            <b>07/11/2024</b>
-            <p>R$ 10,25</p>
-            <p>Terreno</p>
-            <p>Mensalidade</p>
-        </li>
-        <li class="expense">
-            <b>11/02/2024</b>
-            <p>R$ 10,25</p>
-            <p>Supermercado</p>
-            <p></p>
-        </li>
-        <li class="income">
-            <b>20/07/2024</b>
-            <p>R$ 10,25</p>
-            <p>Salario</p>
-            <p>Empresa</p>
-        </li>
-        <li class="expense">
-            <b>30/08/2024</b>
-            <p>R$ 10,25</p>
-            <p>Transporte</p>
-            <p>Gasolina</p>
-        </li>
-        <li class="expense">
-            <b>07/11/2024</b>
-            <p>R$ 10,25</p>
-            <p>Terreno</p>
-            <p>Mensalidade</p>
-        </li>
-    </ol>
+    <ol id="transactions"></ol>
 
     <button class="fab fixed bottom right">+</button>
 
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     <script src="../../firebase-init.js"></script>
     <script src="home.js"></script>
     <script src="../../auth-guard.js"></script>
