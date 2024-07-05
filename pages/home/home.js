@@ -13,7 +13,7 @@ firebase.auth().onAuthStateChanged(user => {
 })
 
 function newTransaction(){
-    window.location.href('../transaction/transaction.html')
+    window.location.href = '../transaction/transaction.html'
 }
 
 findTransactions();

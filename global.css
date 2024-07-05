@@ -8,6 +8,14 @@ body{
     align-items: center;
 }
 
+header{
+    text-align: right;
+}
+
+header button{
+    width: auto;
+}
+
 button.fab{
     width: 54px;
     height: 54px;
@@ -31,9 +39,15 @@ button.fab.right{
     margin-bottom: 10px;
 }
 
-input, button{
+input, 
+button,
+select {
     padding: 10px;
     width: -webkit-fill-available;
+}
+
+input[type='radio']{
+    width: auto;
 }
 
 .loading{
