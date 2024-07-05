@@ -1,5 +1,8 @@
 const form = {
     date: () => document.getElementById('date'),
+    currency: () => document.getElementById('currency'),
+    description: () => document.getElementById('description'),
+    typeExpense: () => document.getElementById('expense'),
     dateRequireError: () => document.getElementById('date-required-error'),
     value: () => document.getElementById('value'),
     valueRequireError: () => document.getElementById('value-required-error'),
@@ -7,6 +10,40 @@ const form = {
     transactionType: () => document.getElementById('transaction-type'),
     transactionTypeRequireError: () => document.getElementById('transaction-type-required-error'),
     saveButton: () => document.getElementById('save-button')
+}
+
+function saveTransaction(){
+    showLoading()
+
+    const transaction = createTransaction()
+    
+    firebase.firestore()
+        .collection('transactions')
+        .add(transaction)
+        .then(()=>{
+            hideLoading()
+            window.location.href = '../home/home.html'
+        })
+        .catch(()=>{
+            hideLoading()
+            alert('Erro ao salvar transação')
+        })
+}
+
+function createTransaction(){
+    return {
+        type: form.typeExpense().checked ? 'expense' : 'income',
+        date: form.date().value,
+        money: {
+            currency: form.currency().value,
+            value: parseFloat(form.value().value)
+        },
+        transactionType: form.transactionType().value,
+        description: form.description().value,
+        user: {
+            uid: firebase.auth().currentUser.uid
+        }
+    }
 }
 
 
@@ -28,7 +65,6 @@ function onchangeValue(){
 
 function onChangeTransactionType(){
     const transactionType = form.transactionType().value
-    console.log(transactionType)
     form.transactionTypeRequireError().style.display = !transactionType ? 'block' : 'none'
 
     toggleSaveButtonDisable()
