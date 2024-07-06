@@ -32,14 +32,11 @@ function isNewtransation(){
 function findTransactionsByUid(uid){
     //showLoading()
 
-    firebase.firestore()
-        .collection('transactions')
-        .doc(uid)
-        .get()
-        .then(doc => {
+    transactionService.findByUid(uid)
+        .then(transaction => {
             hideLoading()
-            if(doc.exists){
-                fillTransactionScreen(doc.data())
+            if(transaction){
+                fillTransactionScreen(transaction)
                 toggleSaveButtonDisable()
             }else{
                 alert('Documento não encontrado')
@@ -83,9 +80,7 @@ function saveTransaction(){
 }
 
 function save(transaction){
-    firebase.firestore()
-        .collection('transactions')
-        .add(transaction)
+    transactionService.save(transaction)
         .then(()=>{
             hideLoading()
             window.location.href = '../home/home.html'
@@ -98,11 +93,8 @@ function save(transaction){
 
 function update(transaction){
     //showLoading()
-
-    firebase.firestore()
-        .collection('transactions')
-        .doc(getTransactionUid())
-        .update(transaction)
+      
+    transactionService.update(transaction)
         .then(()=>{
             hideLoading()
             window.location.href = '../home/home.html'

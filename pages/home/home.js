@@ -20,17 +20,9 @@ findTransactions();
 
 function findTransactions(user) {
     showLoading()
-    firebase.firestore()
-        .collection('transactions')
-        .where('user.uid','==',user.uid)
-        .orderBy('date','desc')
-        .get()
-        .then(snapshot => {
+    transactionService.findByUser(user)
+        .then(transactions => {
             hideLoading()
-            const transactions = snapshot.docs.map(doc =>({
-                ...doc.data(),
-                uid: doc.id
-            })) 
             addTransactionsToScreen(transactions);
         })
         .catch(error => {
@@ -92,10 +84,7 @@ function askRemoveTransaction(transaction){
 function removeTransaction(transaction){
     showLoading()
 
-    firebase.firestore()
-        .collection('transactions')
-        .doc(transaction.uid)
-        .delete()
+    transactionService.remove(transaction)
         .then(()=>{
             hideLoading()
 

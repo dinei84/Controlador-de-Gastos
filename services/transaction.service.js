@@ -1,0 +1,43 @@
+const transactionService = {
+    findByUser: user => {
+        return firebase.firestore()
+                .collection('transactions')
+                .where('user.uid','==',user.uid)
+                .orderBy('date','desc')
+                .get()
+                .then(snapshot => {
+                    return snapshot.docs.map(doc =>({
+                        ...doc.data(),
+                        uid: doc.id
+                    })) 
+                    
+                })
+    },
+    findByUid: uid => {
+        return firebase.firestore()
+                .collection('transactions')
+                .doc(uid)
+                .get()
+                .then(doc => {
+                    return doc.data()
+                })
+    },
+    remove: transaction => {
+        return firebase.firestore()
+                .collection('transactions')
+                .doc(transaction.uid)
+                .delete()
+    },
+    save: transaction => {
+        return firebase.firestore()
+                .add(transaction)
+    },
+    update: (transaction, uid) => {
+        return firebase.firestore()
+                .collection('transactions')
+                .doc(uid)
+                .update(transaction)
+    }
+};
+
+console.log('transactionService loaded:', transactionService);
