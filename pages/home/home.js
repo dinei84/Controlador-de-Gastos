@@ -27,7 +27,10 @@ function findTransactions(user) {
         .get()
         .then(snapshot => {
             hideLoading()
-            const transactions = snapshot.docs.map(doc => doc.data());
+            const transactions = snapshot.docs.map(doc =>({
+                ...doc.data(),
+                uid: doc.id
+            })) 
             addTransactionsToScreen(transactions);
         })
         .catch(error => {
@@ -40,6 +43,7 @@ function addTransactionsToScreen(transactions) {
     const orderedList = document.getElementById('transactions');
 
     transactions.forEach(transaction => {
+        console.log(transaction)
         const li = document.createElement('li');
         li.classList.add(transaction.type);
         li.id = transaction.uid
