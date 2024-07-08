@@ -15,7 +15,7 @@ const form = {
 
 getTransactionUid()
 
-if(!isNewtransation()){
+if(!isNewTransaction()){
     const uid = getTransactionUid()
     findTransactionsByUid(uid)
 }
@@ -25,7 +25,7 @@ function getTransactionUid(){
     return urlParams.get('uid')
 }
 
-function isNewtransation(){
+function isNewTransaction(){
     return getTransactionUid() ? false : true
 }
 
@@ -72,7 +72,7 @@ function saveTransaction(){
 
     const transaction = createTransaction()
     
-    if(isNewtransation()){
+    if(isNewTransaction()){
         save(transaction)
     }else{
         update(transaction)
@@ -94,7 +94,8 @@ function save(transaction){
 function update(transaction){
     //showLoading()
       
-    transactionService.update(transaction)
+    const uid = getTransactionUid(); 
+    transactionService.update(transaction, uid)
         .then(()=>{
             hideLoading()
             window.location.href = '../home/home.html'

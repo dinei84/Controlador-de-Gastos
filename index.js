@@ -107,5 +107,3 @@ function getErrorMessage(error) {
     }
     return error.message || 'Ocorreu um erro desconhecido';
 }
-
-

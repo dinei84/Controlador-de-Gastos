@@ -30,6 +30,7 @@ const transactionService = {
     },
     save: transaction => {
         return firebase.firestore()
+                .collection('transactions')
                 .add(transaction)
     },
     update: (transaction, uid) => {
